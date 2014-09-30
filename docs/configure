@@ -464,17 +464,6 @@ ditch_maxmsgsize:
   local_part_suffix_optional
   retry_use_local_part
 
-ditch_malware:
-  driver = redirect
-  allow_fail
-  data = :blackhole:
-  condition = ${if and { {match {$h_X-ACL-Warn:}{.*malware.*}} \
-                         {eq {${lookup mysql{select users.on_avscan from users,domains \
-		                where localpart = '${quote_mysql:$local_part}' \
-		                and domain = '${quote_mysql:$domain}' \ 
-		                and users.on_avscan = '1' \
-		                and users.domain_id=domains.domain_id}}}{1} }} {yes}{no} }
-
 ditch_spam:
   driver = redirect
   allow_fail
