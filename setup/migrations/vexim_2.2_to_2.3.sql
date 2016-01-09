@@ -62,3 +62,10 @@ ALTER TABLE `group_contents` ADD KEY `fk_group_contents_member_id_idx` (`member_
 ALTER TABLE `group_contents` ADD KEY `fk_group_contents_group_id_idx` (`group_id`);
 ALTER TABLE `group_contents` ADD CONSTRAINT `fk_group_contents_group_id` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `group_contents` ADD CONSTRAINT `fk_group_contents_member_id` FOREIGN KEY (`member_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Uncomment this section if you used the Schirmacher-patch: https://www.schirmacher.de/display/INFO/improved+Vexim+frontend+and+bug+fixes
+--
+-- UPDATE `users` SET spam_drop=1 WHERE movedelete=2;
+-- ALTER TABLE `users` DROP COLUMN `movedelete`;
+-- ALTER TABLE `users` DROP COLUMN `on_rewritesubject`;
